@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>⛏️ Kho Lệnh Minecraft</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#1e293b;
+    text-align:center;
+    padding:40px 20px;
+    border-bottom:3px solid #55ff55;
+}
+
+header h1{
+    margin:0;
+    font-size:38px;
+    color:#55ff55;
+    text-shadow:3px 3px #000;
+}
+
+header p{
+    margin-top:12px;
+    color:#cbd5e1;
+    font-size:17px;
+}
+
+/* ================= MODE ================= */
+
+.modes{
+    max-width:1100px;
+    margin:35px auto 20px;
+    padding:0 20px;
+
+    display:flex;
+    gap:20px;
+}
+
+.mode{
+    flex:1;
+    padding:30px 15px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-size:23px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    box-shadow:0 6px 0 rgba(0,0,0,.4);
+}
+
+.mode:hover{
+    transform:translateY(-5px);
+    filter:brightness(1.15);
+}
+
+.mode:active{
+    transform:translateY(3px);
+}
+
+.bedrock{
+    background:#2563eb;
+}
+
+.java{
+    background:#16a34a;
+}
+
+.server{
+    background:#9333ea;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box{
+    max-width:900px;
+    margin:25px auto;
+    padding:0 20px;
+}
+
+.search-box input{
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:17px;
+
+    outline:none;
+
+    background:#fff;
+    color:#111;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    max-width:900px;
+
+    margin:auto;
+
+    padding:0 20px 80px;
+}
+
+.section{
+    display:none;
+}
+
+.section h2{
+    color:#55ff55;
+
+    text-shadow:2px 2px #000;
+}
+
+.info{
+    background:#1e293b;
+
+    border-left:5px solid #55ff55;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    margin:15px 0 25px;
+
+    color:#cbd5e1;
+
+    line-height:1.6;
+}
+
+/* ================= GROUP ================= */
+
+details{
+    background:#1e293b;
+
+    margin:15px 0;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    border:1px solid #334155;
+}
+
+summary{
+    padding:18px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    user-select:none;
+}
+
+summary:hover{
+    background:#334155;
+}
+
+/* ================= COMMAND ================= */
+
+.command{
+    background:#0f172a;
+
+    margin:10px;
+
+    padding:17px;
+
+    border-radius:8px;
+
+    border:1px solid #1e293b;
+}
+
+.command-name{
+    color:#55ff55;
+
+    font-family:monospace;
+
+    font-size:18px;
+
+    font-weight:bold;
+}
+
+.description{
+    color:#cbd5e1;
+
+    margin:8px 0;
+
+    line-height:1.5;
+}
+
+.syntax{
+    color:#94a3b8;
+
+    font-size:13px;
+
+    margin-top:5px;
+}
+
+code{
+    display:block;
+
+    background:#000;
+
+    color:#55ff55;
+
+    padding:12px;
+
+    border-radius:6px;
+
+    margin:10px 0;
+
+    font-size:15px;
+
+    overflow-x:auto;
+
+    font-family:monospace;
+}
+
+/* ================= BUTTON ================= */
+
+.copy-btn{
+    background:#55ff55;
+
+    color:#071007;
+
+    border:none;
+
+    padding:9px 15px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.15s;
+}
+
+.copy-btn:hover{
+    background:#22c55e;
+
+    transform:scale(1.04);
+}
+
+/* ================= NETHERITE ================= */
+
+.netherite-link{
+
+    position:relative;
+
+    display:block;
+
+    width:230px;
+
+    height:145px;
+
+    margin:45px auto;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transform:
+        perspective(600px)
+        rotateX(8deg);
+
+    transition:.2s;
+}
+
+.netherite-top{
+
+    position:absolute;
+
+    width:230px;
+
+    height:48px;
+
+    top:0;
+
+    left:0;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #55545b 0px,
+            #55545b 5px,
+            #29282e 5px,
+            #29282e 10px
+        );
+
+    border:4px solid #111116;
+
+    transform:skewX(-35deg);
+
+    transform-origin:left bottom;
+
+    border-radius:5px;
+}
+
+.netherite-face{
+
+    position:absolute;
+
+    width:230px;
+
+    height:100px;
+
+    left:0;
+
+    top:42px;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            #36353c 0px,
+            #36353c 7px,
+            #222127 7px,
+            #222127 14px
+        );
+
+    border:4px solid #111116;
+
+    border-radius:5px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#d8d8dc;
+
+    text-shadow:3px 3px #111;
+
+    box-shadow:
+
+        inset 0 0 0 2px #5b5a62,
+
+        0 8px 0 #09090c,
+
+        0 15px 20px rgba(0,0,0,.6);
+}
+
+.netherite-face span{
+
+    font-size:30px;
+
+    margin-bottom:5px;
+}
+
+.netherite-face b{
+
+    font-family:monospace;
+
+    font-size:17px;
+
+    letter-spacing:1px;
+}
+
+.netherite-link:hover{
+
+    transform:
+        perspective(600px)
+        rotateX(8deg)
+        translateY(-8px)
+        scale(1.05);
+
+    filter:brightness(1.2);
+}
+
+.netherite-link:active{
+
+    transform:
+        perspective(600px)
+        rotateX(8deg)
+        translateY(5px)
+        scale(.98);
+}
+
+/* ================= MESSAGE ================= */
+
+#message{
+
+    position:fixed;
+
+    bottom:25px;
+
+    right:25px;
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:8px;
+
+    display:none;
+
+    font-weight:bold;
+
+    z-index:9999;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.5);
+}
+
+/* ================= NO RESULT ================= */
+
+.no-result{
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    padding:30px;
+
+    display:none;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    .modes{
+
+        flex-direction:column;
+    }
+
+    header h1{
+
+        font-size:30px;
+    }
+
+    .mode{
+
+        padding:22px;
+    }
+
+    .netherite-link{
+
+        width:200px;
+    }
+
+    .netherite-top,
+    .netherite-face{
+
+        width:200px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================================================= -->
+
+<!-- HEADER -->
+
+<!-- ================================================= -->
+
+<header>
+
+<h1>⛏️ KHO LỆNH MINECRAFT</h1>
+
+<p>
+Tra cứu lệnh Minecraft Bedrock, Java và Server
+</p>
+
+</header>
+
+<!-- ================================================= -->
+
+<!-- 3 MODE -->
+
+<!-- ================================================= -->
+
+<div class="modes">
+
+<div
+class="mode bedrock"
+onclick="showSection('bedrock')">
+
+📱 BEDROCK / PE
+
+</div>
+
+<div
+class="mode java"
+onclick="showSection('java')">
+
+💻 JAVA
+
+</div>
+
+<div
+class="mode server"
+onclick="showSection('server')">
+
+🖥️ SERVER
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+
+<!-- NETHERITE LINK -->
+
+<!-- ================================================= -->
+
+<a
+href="#"
+class="netherite-link"
+onclick="showSection('bedrock'); return false;">
+
+<div class="netherite-top"></div>
+
+<div class="netherite-face">
+
+<span>⛏️</span>
+
+<b>MỞ KHO LỆNH</b>
+
+</div>
+
+</a>
+
+<!-- ================================================= -->
+
+<!-- SEARCH -->
+
+<!-- ================================================= -->
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="🔎 Tìm lệnh... ví dụ: teleport, give, zombie..."
+oninput="searchCommands()">
+
+</div>
+
+<!-- ================================================= -->
+
+<!-- CONTENT -->
+
+<!-- ================================================= -->
+
+<div class="content">
+
+<!-- ================= BEDROCK ================= -->
+
+<div
+id="bedrock"
+class="section">
+
+<h2>📱 Minecraft Bedrock / PE</h2>
+
+<div class="info">
+
+🟦 <b>Bedrock Edition</b>
+
+<br>
+
+Danh sách lệnh dành cho Minecraft Bedrock / PE.
+
+<br>
+
+⚠️ Một số lệnh cần bật <b>Cheats</b> hoặc cần quyền Operator.
+
+<br>
+
+📋 Bấm <b>Sao chép</b> để copy lệnh.
+
+</div>
+
+<div id="bedrockCommands"></div>
+
+</div>
+
+<!-- ================= JAVA ================= -->
+
+<div
+id="java"
+class="section">
+
+<h2>💻 Minecraft Java Edition</h2>
+
+<div class="info">
+
+🟩 Các lệnh phổ biến dành cho Minecraft Java Edition.
+
+</div>
+
+<div id="javaCommands"></div>
+
+</div>
+
+<!-- ================= SERVER ================= -->
+
+<div
+id="server"
+class="section">
+
+<h2>🖥️ Minecraft Server</h2>
+
+<div class="info">
+
+🟪 Các lệnh thường dùng để quản lý server Minecraft.
+
+</div>
+
+<div id="serverCommands"></div>
+
+</div>
+
+</div>
+
+<!-- MESSAGE -->
+
+<div id="message">
+✅ Đã sao chép!
+</div>
+
+<script>
+
+/* =====================================================
+   DỮ LIỆU LỆNH BEDROCK
+===================================================== */
+
+const bedrockCommands = [
+
+{
+group:"🎮 Gamemode",
+
+commands:[
+
+{
+name:"/gamemode survival",
+description:"Chuyển người chơi sang chế độ sinh tồn.",
+syntax:"/gamemode survival",
+copy:"/gamemode survival"
+},
+
+{
+name:"/gamemode creative",
+description:"Chuyển người chơi sang chế độ sáng tạo.",
+syntax:"/gamemode creative",
+copy:"/gamemode creative"
+},
+
+{
+name:"/gamemode adventure",
+description:"Chuyển người chơi sang chế độ phiêu lưu.",
+syntax:"/gamemode adventure",
+copy:"/gamemode adventure"
+},
+
+{
+name:"/gamemode spectator",
+description:"Chuyển người chơi sang chế độ khán giả.",
+syntax:"/gamemode spectator",
+copy:"/gamemode spectator"
+}
+
+]
+},
+
+
+{
+group:"👤 Người chơi",
+
+commands:[
+
+{
+name:"/give",
+description:"Đưa vật phẩm cho người chơi.",
+syntax:"/give <player> <item> [amount]",
+copy:"/give @s diamond 64"
+},
+
+{
+name:"/clear",
+description:"Xóa vật phẩm khỏi túi đồ.",
+syntax:"/clear <player> [item] [maxCount]",
+copy:"/clear @s diamond"
+},
+
+{
+name:"/effect",
+description:"Thêm hoặc xóa hiệu ứng.",
+syntax:"/effect <player> <effect> [seconds] [amplifier]",
+copy:"/effect @s speed 60 2"
+},
+
+{
+name:"/enchant",
+description:"Phù phép vật phẩm đang cầm.",
+syntax:"/enchant <player> <enchantment> [level]",
+copy:"/enchant @s sharpness 5"
+},
+
+{
+name:"/xp",
+description:"Thêm kinh nghiệm cho người chơi.",
+syntax:"/xp <amount> <player>",
+copy:"/xp 100 @s"
+},
+
+{
+name:"/kill",
+description:"Tiêu diệt người chơi hoặc entity.",
+syntax:"/kill <target>",
+copy:"/kill @s"
+},
+
+{
+name:"/spawnpoint",
+description:"Đặt điểm hồi sinh.",
+syntax:"/spawnpoint <player> [x y z]",
+copy:"/spawnpoint @s ~ ~ ~"
+},
+
+{
+name:"/clearspawnpoint",
+description:"Xóa điểm hồi sinh.",
+syntax:"/clearspawnpoint <player>",
+copy:"/clearspawnpoint @s"
+}
+
+]
+},
+
+
+{
+group:"📍 Dịch chuyển",
+
+commands:[
+
+{
+name:"/tp",
+description:"Dịch chuyển người chơi hoặc entity.",
+syntax:"/tp <target> <destination>",
+copy:"/tp @s @p"
+},
+
+{
+name:"/teleport",
+description:"Dịch chuyển tới tọa độ hoặc entity.",
+syntax:"/teleport <target> <x> <y> <z>",
+copy:"/teleport @s 0 100 0"
+},
+
+{
+name:"/spreadplayers",
+description:"Phân tán entity tới các vị trí khác nhau.",
+syntax:"/spreadplayers <x> <z> <spreadDistance> <maxRange> <targets>",
+copy:"/spreadplayers ~ ~ 10 50 @a"
+}
+
+]
+},
+
+
+{
+group:"🧱 Xây dựng",
+
+commands:[
+
+{
+name:"/setblock",
+description:"Đặt một block tại vị trí.",
+syntax:"/setblock <x> <y> <z> <block>",
+copy:"/setblock ~ ~ ~ stone"
+},
+
+{
+name:"/fill",
+description:"Lấp đầy một khu vực bằng block.",
+syntax:"/fill <from> <to> <block>",
+copy:"/fill ~ ~ ~ ~10 ~10 ~10 stone"
+},
+
+{
+name:"/clone",
+description:"Sao chép một khu vực.",
+syntax:"/clone <begin> <end> <destination>",
+copy:"/clone ~ ~ ~ ~5 ~5 ~5 ~10 ~ ~"
+},
+
+{
+name:"/place",
+description:"Đặt feature hoặc cấu trúc.",
+syntax:"/place <feature|structure>",
+copy:"/place feature minecraft:tree"
+},
+
+{
+name:"/structure",
+description:"Lưu hoặc tải structure.",
+syntax:"/structure load <name> <x> <y> <z>",
+copy:"/structure load myhouse ~ ~ ~"
+}
+
+]
+},
+
+
+{
+group:"🌍 Thế giới",
+
+commands:[
+
+{
+name:"/time",
+description:"Thay đổi thời gian thế giới.",
+syntax:"/time set <day|night|noon|midnight>",
+copy:"/time set day"
+},
+
+{
+name:"/weather",
+description:"Thay đổi thời tiết.",
+syntax:"/weather <clear|rain|thunder>",
+copy:"/weather clear"
+},
+
+{
+name:"/difficulty",
+description:"Thay đổi độ khó.",
+syntax:"/difficulty <peaceful|easy|normal|hard>",
+copy:"/difficulty hard"
+},
+
+{
+name:"/gamerule",
+description:"Thay đổi luật của thế giới.",
+syntax:"/gamerule <rule> <value>",
+copy:"/gamerule keepinventory true"
+},
+
+{
+name:"/tickingarea",
+description:"Tạo hoặc xóa ticking area.",
+syntax:"/tickingarea <add|remove|list>",
+copy:"/tickingarea add circle ~ ~ ~ 4 farm"
+},
+
+{
+name:"/setworldspawn",
+description:"Đặt world spawn.",
+syntax:"/setworldspawn [x] [y] [z]",
+copy:"/setworldspawn ~ ~ ~"
+},
+
+{
+name:"/mobevent",
+description:"Bật hoặc tắt mob event.",
+syntax:"/mobevent <event> <true|false>",
+copy:"/mobevent minecraft:wandering_trader_event true"
+},
+
+{
+name:"/daylock",
+description:"Khóa hoặc mở chu kỳ ngày đêm.",
+syntax:"/daylock <true|false>",
+copy:"/daylock true"
+},
+
+{
+name:"/toggledownfall",
+description:"Thay đổi trạng thái thời tiết.",
+syntax:"/toggledownfall",
+copy:"/toggledownfall"
+}
+
+]
+},
+
+
+{
+group:"🐺 Mob & Entity",
+
+commands:[
+
+{
+name:"/summon",
+description:"Triệu hồi mob hoặc entity.",
+syntax:"/summon <entity> [x] [y] [z]",
+copy:"/summon zombie ~ ~ ~"
+},
+
+{
+name:"/damage",
+description:"Gây sát thương cho entity.",
+syntax:"/damage <target> <amount>",
+copy:"/damage @e[type=zombie,c=1] 10"
+},
+
+{
+name:"/event",
+description:"Kích hoạt event của entity.",
+syntax:"/event entity <target> <event>",
+copy:"/event entity @e[type=cow,c=1] minecraft:on_tame"
+},
+
+{
+name:"/ride",
+description:"Cho entity cưỡi entity khác.",
+syntax:"/ride <rider> start_riding <vehicle>",
+copy:"/ride @s start_riding @e[type=horse,c=1]"
+},
+
+{
+name:"/tag",
+description:"Thêm hoặc xóa tag của entity.",
+syntax:"/tag <target> <add|remove> <tag>",
+copy:"/tag @s add player"
+}
+
+]
+},
+
+
+{
+group:"⚙️ Command & Logic",
+
+commands:[
+
+{
+name:"/execute",
+description:"Chạy lệnh dưới điều kiện hoặc từ entity.",
+syntax:"/execute <subcommand>",
+copy:"/execute as @a at @s run say Hello"
+},
+
+{
+name:"/scoreboard",
+description:"Tạo và quản lý hệ thống điểm.",
+syntax:"/scoreboard objectives add <name> dummy",
+copy:"/scoreboard objectives add kills dummy Kills"
+},
+
+{
+name:"/function",
+description:"Chạy function từ Behavior Pack.",
+syntax:"/function <name>",
+copy:"/function myfunction"
+},
+
+{
+name:"/schedule",
+description:"Lên lịch chạy function.",
+syntax:"/schedule on_area_loaded ...",
+copy:"/schedule on_area_loaded add circle ~ ~ ~ 10 myfunction"
+},
+
+{
+name:"/reload",
+description:"Tải lại function hoặc script.",
+syntax:"/reload",
+copy:"/reload"
+}
+
+]
+},
+
+
+{
+group:"💬 Chat",
+
+commands:[
+
+{
+name:"/say",
+description:"Gửi tin nhắn cho tất cả người chơi.",
+syntax:"/say <message>",
+copy:"/say Xin chao moi nguoi"
+},
+
+{
+name:"/tell",
+description:"Gửi tin nhắn riêng.",
+syntax:"/tell <player> <message>",
+copy:"/tell TenNguoiChoi Xin chao"
+},
+
+{
+name:"/tellraw",
+description:"Gửi tin nhắn bằng JSON.",
+syntax:"/tellraw <player> <json>",
+copy:'/tellraw @a {"rawtext":[{"text":"Xin chao!"}]}'
+},
+
+{
+name:"/me",
+description:"Hiển thị hành động của người chơi.",
+syntax:"/me <message>",
+copy:"/me dang choi Minecraft"
+},
+
+{
+name:"/title",
+description:"Hiển thị chữ lớn trên màn hình.",
+syntax:"/title <player> <title|subtitle|actionbar> <text>",
+copy:"/title @a title Xin Chao"
+},
+
+{
+name:"/titleraw",
+description:"Hiển thị title bằng JSON.",
+syntax:"/titleraw <player> <title|subtitle|actionbar> <json>",
+copy:'/titleraw @a title {"rawtext":[{"text":"Hello"}]}'
+}
+
+]
+},
+
+
+{
+group:"📷 Camera & HUD",
+
+commands:[
+
+{
+name:"/camera",
+description:"Thay đổi góc nhìn camera.",
+syntax:"/camera <player> set <preset>",
+copy:"/camera @s set minecraft:free"
+},
+
+{
+name:"/camerashake",
+description:"Làm rung camera.",
+syntax:"/camerashake add <player> <intensity> <seconds>",
+copy:"/camerashake add @s 1 2 positional"
+},
+
+{
+name:"/hud",
+description:"Ẩn hoặc hiện HUD.",
+syntax:"/hud <player> <hide|reset> <element>",
+copy:"/hud @s hide all"
+},
+
+{
+name:"/inputpermission",
+description:"Bật hoặc khóa quyền điều khiển.",
+syntax:"/inputpermission set <player> <permission> <enabled>",
+copy:"/inputpermission set @s movement disabled"
+},
+
+{
+name:"/controlscheme",
+description:"Thiết lập control scheme.",
+syntax:"/controlscheme <player> <scheme>",
+copy:"/controlscheme @s camera_relative"
+},
+
+{
+name:"/aimassist",
+description:"Quản lý Aim Assist trên Bedrock.",
+syntax:"/aimassist",
+copy:"/aimassist"
+}
+
+]
+},
+
+
+{
+group:"🔊 Âm thanh & Hiệu ứng",
+
+commands:[
+
+{
+name:"/playsound",
+description:"Phát âm thanh.",
+syntax:"/playsound <sound> <player>",
+copy:"/playsound random.orb @s"
+},
+
+{
+name:"/stopsound",
+description:"Dừng âm thanh.",
+syntax:"/stopsound <player>",
+copy:"/stopsound @s"
+},
+
+{
+name:"/music",
+description:"Điều khiển nhạc.",
+syntax:"/music <play|stop>",
+copy:"/music stop"
+},
+
+{
+name:"/particle",
+description:"Tạo hiệu ứng particle.",
+syntax:"/particle <effect> <position>",
+copy:"/particle minecraft:basic_flame_particle ~ ~1 ~"
+},
+
+{
+name:"/fog",
+description:"Quản lý hiệu ứng sương mù.",
+syntax:"/fog <player> <push|pop> ...",
+copy:"/fog @s push my_fog myfog"
+}
+
+]
+},
+
+
+{
+group:"🎁 Loot & Recipe",
+
+commands:[
+
+{
+name:"/loot",
+description:"Tạo hoặc đưa loot.",
+syntax:"/loot <spawn|give|insert>",
+copy:"/loot spawn ~ ~ ~ loot loot_tables/chests/simple_dungeon"
+},
+
+{
+name:"/recipe",
+description:"Mở khóa hoặc xóa recipe.",
+syntax:"/recipe <give|take> <player> <recipe>",
+copy:"/recipe give @s *"
+}
+
+]
+},
+
+
+{
+group:"🧭 Tìm kiếm",
+
+commands:[
+
+{
+name:"/locate",
+description:"Tìm biome hoặc structure.",
+syntax:"/locate structure <structure>",
+copy:"/locate structure village"
+},
+
+{
+name:"/help",
+description:"Xem danh sách lệnh.",
+syntax:"/help [command]",
+copy:"/help"
+}
+
+]
+},
+
+
+{
+group:"🖥️ Quản trị Bedrock",
+
+commands:[
+
+{
+name:"/op",
+description:"Cấp quyền Operator.",
+syntax:"/op <player>",
+copy:"/op TenNguoiChoi"
+},
+
+{
+name:"/deop",
+description:"Xóa quyền Operator.",
+syntax:"/deop <player>",
+copy:"/deop TenNguoiChoi"
+},
+
+{
+name:"/kick",
+description:"Đá người chơi khỏi server.",
+syntax:"/kick <player> [reason]",
+copy:"/kick TenNguoiChoi"
+},
+
+{
+name:"/list",
+description:"Hiển thị người chơi online.",
+syntax:"/list",
+copy:"/list"
+},
+
+{
+name:"/allowlist",
+description:"Quản lý allowlist.",
+syntax:"/allowlist <add|remove|list>",
+copy:"/allowlist list"
+},
+
+{
+name:"/setmaxplayers",
+description:"Đặt số người chơi tối đa.",
+syntax:"/setmaxplayers <number>",
+copy:"/setmaxplayers 10"
+},
+
+{
+name:"/transfer",
+description:"Chuyển người chơi sang server khác.",
+syntax:"/transfer <address> [port]",
+copy:"/transfer 127.0.0.1 19132"
+}
+
+]
+},
+
+
+{
+group:"🧩 Script & Developer",
+
+commands:[
+
+{
+name:"/scriptevent",
+description:"Gửi event tới Script API.",
+syntax:"/scriptevent <namespace:event> [message]",
+copy:"/scriptevent mypack:test hello"
+},
+
+{
+name:"/gametest",
+description:"Công cụ GameTest.",
+syntax:"/gametest",
+copy:"/gametest"
+},
+
+{
+name:"/script",
+description:"Công cụ Script.",
+syntax:"/script",
+copy:"/script"
+},
+
+{
+name:"/packstack",
+description:"Xem thứ tự Behavior Pack và Resource Pack.",
+syntax:"/packstack",
+copy:"/packstack"
+}
+
+]
+}
+
+];
+
+
+/* =====================================================
+   DỮ LIỆU JAVA
+===================================================== */
+
+const javaCommands = [
+
+{
+group:"🎮 Gamemode",
+
+commands:[
+
+{
+name:"/gamemode survival",
+description:"Chuyển sang Survival.",
+syntax:"/gamemode survival",
+copy:"/gamemode survival"
+},
+
+{
+name:"/gamemode creative",
+description:"Chuyển sang Creative.",
+syntax:"/gamemode creative",
+copy:"/gamemode creative"
+},
+
+{
+name:"/gamemode adventure",
+description:"Chuyển sang Adventure.",
+syntax:"/gamemode adventure",
+copy:"/gamemode adventure"
+},
+
+{
+name:"/gamemode spectator",
+description:"Chuyển sang Spectator.",
+syntax:"/gamemode spectator",
+copy:"/gamemode spectator"
+}
+
+]
+},
+
+
+{
+group:"👤 Người chơi",
+
+commands:[
+
+{
+name:"/give",
+description:"Đưa vật phẩm cho người chơi.",
+syntax:"/give <target> <item> [count]",
+copy:"/give @s minecraft:diamond 64"
+},
+
+{
+name:"/clear",
+description:"Xóa vật phẩm.",
+syntax:"/clear <targets> [item]",
+copy:"/clear @s minecraft:diamond"
+},
+
+{
+name:"/effect",
+description:"Thêm hiệu ứng.",
+syntax:"/effect give <targets> <effect> [seconds] [amplifier]",
+copy:"/effect give @s minecraft:speed 60 2"
+},
+
+{
+name:"/enchant",
+description:"Phù phép vật phẩm.",
+syntax:"/enchant <targets> <enchantment> [level]",
+copy:"/enchant @s minecraft:sharpness 5"
+},
+
+{
+name:"/experience",
+description:"Thêm kinh nghiệm.",
+syntax:"/experience add <targets> <amount>",
+copy:"/experience add @s 100 points"
+},
+
+{
+name:"/kill",
+description:"Tiêu diệt entity.",
+syntax:"/kill <targets>",
+copy:"/kill @s"
+}
+
+]
+},
+
+
+{
+group:"📍 Dịch chuyển",
+
+commands:[
+
+{
+name:"/tp",
+description:"Dịch chuyển.",
+syntax:"/tp <target> <destination>",
+copy:"/tp @s 0 100 0"
+},
+
+{
+name:"/teleport",
+description:"Dịch chuyển tới tọa độ.",
+syntax:"/teleport <target> <x> <y> <z>",
+copy:"/teleport @s 0 100 0"
+},
+
+{
+name:"/locate",
+description:"Tìm structure.",
+syntax:"/locate structure <structure>",
+copy:"/locate structure minecraft:village_plains"
+}
+
+]
+},
+
+
+{
+group:"🧱 Xây dựng",
+
+commands:[
+
+{
+name:"/setblock",
+description:"Đặt block.",
+syntax:"/setblock <pos> <block>",
+copy:"/setblock ~ ~ ~ minecraft:stone"
+},
+
+{
+name:"/fill",
+description:"Lấp đầy khu vực.",
+syntax:"/fill <from> <to> <block>",
+copy:"/fill ~ ~ ~ ~10 ~10 ~10 minecraft:stone"
+},
+
+{
+name:"/clone",
+description:"Sao chép khu vực.",
+syntax:"/clone <begin> <end> <destination>",
+copy:"/clone ~ ~ ~ ~5 ~5 ~5 ~10 ~ ~"
+}
+
+]
+},
+
+
+{
+group:"🌍 Thế giới",
+
+commands:[
+
+{
+name:"/time",
+description:"Thay đổi thời gian.",
+syntax:"/time set <day|night>",
+copy:"/time set day"
+},
+
+{
+name:"/weather",
+description:"Thay đổi thời tiết.",
+syntax:"/weather <clear|rain|thunder>",
+copy:"/weather clear"
+},
+
+{
+name:"/difficulty",
+description:"Thay đổi độ khó.",
+syntax:"/difficulty <difficulty>",
+copy:"/difficulty hard"
+},
+
+{
+name:"/gamerule",
+description:"Thay đổi gamerule.",
+syntax:"/gamerule <rule> [value]",
+copy:"/gamerule keepInventory true"
+},
+
+{
+name:"/setworldspawn",
+description:"Đặt world spawn.",
+syntax:"/setworldspawn [pos]",
+copy:"/setworldspawn ~ ~ ~"
+}
+
+]
+},
+
+
+{
+group:"🐺 Mob",
+
+commands:[
+
+{
+name:"/summon",
+description:"Triệu hồi mob.",
+syntax:"/summon <entity> [pos]",
+copy:"/summon minecraft:zombie ~ ~ ~"
+},
+
+{
+name:"/data",
+description:"Đọc hoặc chỉnh dữ liệu NBT.",
+syntax:"/data <get|merge|modify|remove>",
+copy:"/data get entity @s"
+}
+
+]
+},
+
+
+{
+group:"⚙️ Logic",
+
+commands:[
+
+{
+name:"/execute",
+description:"Chạy lệnh theo điều kiện.",
+syntax:"/execute <subcommand>",
+copy:"/execute as @a at @s run say Hello"
+},
+
+{
+name:"/scoreboard",
+description:"Quản lý scoreboard.",
+syntax:"/scoreboard objectives add <name> dummy",
+copy:"/scoreboard objectives add kills dummy"
+},
+
+{
+name:"/function",
+description:"Chạy function.",
+syntax:"/function <name>",
+copy:"/function myfunction"
+}
+
+]
+}
+
+];
+
+
+/* =====================================================
+   DỮ LIỆU SERVER
+===================================================== */
+
+const serverCommands = [
+
+{
+group:"👑 Quản trị",
+
+commands:[
+
+{
+name:"/op",
+description:"Cấp quyền OP.",
+syntax:"/op <player>",
+copy:"/op TenNguoiChoi"
+},
+
+{
+name:"/deop",
+description:"Xóa quyền OP.",
+syntax:"/deop <player>",
+copy:"/deop TenNguoiChoi"
+},
+
+{
+name:"/kick",
+description:"Đá người chơi.",
+syntax:"/kick <player>",
+copy:"/kick TenNguoiChoi"
+},
+
+{
+name:"/ban",
+description:"Cấm người chơi.",
+syntax:"/ban <player>",
+copy:"/ban TenNguoiChoi"
+},
+
+{
+name:"/pardon",
+description:"Gỡ ban người chơi.",
+syntax:"/pardon <player>",
+copy:"/pardon TenNguoiChoi"
+}
+
+]
+},
+
+
+{
+group:"👥 Người chơi",
+
+commands:[
+
+{
+name:"/list",
+description:"Xem người chơi online.",
+syntax:"/list",
+copy:"/list"
+},
+
+{
+name:"/whitelist",
+description:"Quản lý whitelist.",
+syntax:"/whitelist <add|remove|list>",
+copy:"/whitelist list"
+},
+
+{
+name:"/ban-ip",
+description:"Cấm địa chỉ IP.",
+syntax:"/ban-ip <ip>",
+copy:"/ban-ip 127.0.0.1"
+},
+
+{
+name:"/pardon-ip",
+description:"Gỡ cấm IP.",
+syntax:"/pardon-ip <ip>",
+copy:"/pardon-ip 127.0.0.1"
+}
+
+]
+},
+
+
+{
+group:"🌍 Thế giới",
+
+commands:[
+
+{
+name:"/save-all",
+description:"Lưu thế giới.",
+syntax:"/save-all",
+copy:"/save-all"
+},
+
+{
+name:"/save-off",
+description:"Tắt tự động lưu.",
+syntax:"/save-off",
+copy:"/save-off"
+},
+
+{
+name:"/save-on",
+description:"Bật tự động lưu.",
+syntax:"/save-on",
+copy:"/save-on"
+},
+
+{
+name:"/stop",
+description:"Dừng server.",
+syntax:"/stop",
+copy:"/stop"
+}
+
+]
+},
+
+
+{
+group:"⚙️ Server",
+
+commands:[
+
+{
+name:"/difficulty",
+description:"Đổi độ khó server.",
+syntax:"/difficulty <difficulty>",
+copy:"/difficulty hard"
+},
+
+{
+name:"/gamemode",
+description:"Đổi gamemode.",
+syntax:"/gamemode <mode> [player]",
+copy:"/gamemode creative TenNguoiChoi"
+},
+
+{
+name:"/setworldspawn",
+description:"Đặt spawn của thế giới.",
+syntax:"/setworldspawn [x y z]",
+copy:"/setworldspawn"
+},
+
+{
+name:"/seed",
+description:"Xem seed thế giới.",
+syntax:"/seed",
+copy:"/seed"
+},
+
+{
+name:"/say",
+description:"Gửi tin nhắn tới server.",
+syntax:"/say <message>",
+copy:"/say Server dang bao tri!"
+}
+
+]
+}
+
+];
+
+
+/* =====================================================
+   TẠO GIAO DIỆN
+===================================================== */
+
+function renderCommands(data, containerId){
+
+const container=document.getElementById(containerId);
+
+container.innerHTML="";
+
+
+data.forEach((group,index)=>{
+
+const details=document.createElement("details");
+
+if(index===0){
+    details.open=true;
+}
+
+const summary=document.createElement("summary");
+
+summary.textContent=group.group;
+
+details.appendChild(summary);
+
+
+group.commands.forEach(command=>{
+
+const div=document.createElement("div");
+
+div.className="command";
+
+div.innerHTML=`
+
+<div class="command-name">
+${escapeHTML(command.name)}
+</div>
+
+<div class="description">
+${escapeHTML(command.description)}
+</div>
+
+<div class="syntax">
+${escapeHTML(command.syntax)}
+</div>
+
+<code>${escapeHTML(command.copy)}</code>
+
+<button
+class="copy-btn"
+onclick="copyCommand(${JSON.stringify(command.copy)})">
+
+📋 Sao chép
+
+</button>
+
+`;
+
+details.appendChild(div);
+
+});
+
+
+container.appendChild(details);
+
+});
+
+}
+
+
+/* =====================================================
+   CHỐNG HTML INJECTION
+===================================================== */
+
+function escapeHTML(text){
+
+return String(text)
+
+.replace(/&/g,"&amp;")
+
+.replace(/</g,"&lt;")
+
+.replace(/>/g,"&gt;")
+
+.replace(/"/g,"&quot;")
+
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   CHUYỂN SECTION
+===================================================== */
+
+let currentSection=null;
+
+
+function showSection(sectionId){
+
+const sections=
+document.querySelectorAll(".section");
+
+
+sections.forEach(section=>{
+
+section.style.display="none";
+
+});
+
+
+const selected=
+document.getElementById(sectionId);
+
+
+selected.style.display="block";
+
+
+currentSection=selected;
+
+
+document.getElementById("search").value="";
+
+
+searchCommands();
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+/* =====================================================
+   COPY
+===================================================== */
+
+function copyCommand(command){
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(command);
+
+}else{
+
+const textarea=document.createElement("textarea");
+
+textarea.value=command;
+
+document.body.appendChild(textarea);
+
+textarea.select();
+
+document.execCommand("copy");
+
+textarea.remove();
+
+}
+
+
+const message=
+document.getElementById("message");
+
+
+message.innerText=
+"✅ Đã sao chép: "+command;
+
+
+message.style.display="block";
+
+
+setTimeout(()=>{
+
+message.style.display="none";
+
+},2000);
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchCommands(){
+
+if(!currentSection){
+return;
+}
+
+
+const search=
+document.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+
+const groups=
+currentSection.querySelectorAll("details");
+
+
+let totalFound=0;
+
+
+groups.forEach(group=>{
+
+const commands=
+group.querySelectorAll(".command");
+
+let groupFound=0;
+
+
+commands.forEach(command=>{
+
+const text=
+command.innerText.toLowerCase();
+
+
+if(text.includes(search)){
+
+command.style.display="block";
+
+groupFound++;
+
+totalFound++;
+
+}else{
+
+command.style.display="none";
+
+}
+
+});
+
+
+if(search && groupFound>0){
+
+group.open=true;
+
+group.style.display="block";
+
+}else if(search && groupFound===0){
+
+group.style.display="none";
+
+}else{
+
+group.style.display="block";
+
+}
+
+});
+
+
+let noResult=
+currentSection.querySelector(".no-result");
+
+
+if(!noResult){
+
+noResult=document.createElement("div");
+
+noResult.className="no-result";
+
+noResult.innerText=
+"❌ Không tìm thấy lệnh.";
+
+currentSection.appendChild(noResult);
+
+}
+
+
+if(search && totalFound===0){
+
+noResult.style.display="block";
+
+}else{
+
+noResult.style.display="none";
+
+}
+
+}
+
+
+/* =====================================================
+   KHỞI ĐỘNG
+===================================================== */
+
+renderCommands(
+bedrockCommands,
+"bedrockCommands"
+);
+
+
+renderCommands(
+javaCommands,
+"javaCommands"
+);
+
+
+renderCommands(
+serverCommands,
+"serverCommands"
+);
+
+
+showSection("bedrock");
+
+</script>
+
+</body>
+</html>
